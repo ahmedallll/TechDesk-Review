@@ -176,7 +176,11 @@
     <string name="pref_about_desc">Dual-mode architecture: Local barcode scanner + Secure remote HTTPS store dashboard.</string>
     <string name="pref_language">Language</string>
 
-    <!-- Permissions -->
+    <!-- Permissions & Camera Recovery -->
     <string name="camera_permission_required">Camera permission is required to scan barcodes.</string>
     <string name="camera_permission_grant">Grant Camera Permission</string>
+    <string name="camera_permission_permanently_denied">Camera access is disabled. Please enable camera permission in App Settings to use the scanner.</string>
+    <string name="camera_permission_settings">Open Settings</string>
+    <string name="camera_init_error">Camera Initialization Error</string>
+    <string name="action_retry_camera">Retry Camera</string>
 </resources>

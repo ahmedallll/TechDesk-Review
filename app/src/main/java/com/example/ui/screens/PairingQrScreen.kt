@@ -2,6 +2,7 @@ package com.example.ui.screens
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -42,6 +43,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,9 +60,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.example.R
 import com.example.data.model.QrPayload
 import com.example.scanner.BarcodeAnalyzer
@@ -71,6 +74,8 @@ import com.example.ui.theme.TechDeskError
 import com.example.ui.theme.TechDeskLaser
 import com.example.ui.theme.TechDeskNavy
 import java.util.concurrent.Executors
+
+private const val PAIRING_CAMERA_TAG = "TechDeskPairingCamera"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -94,6 +99,24 @@ fun PairingQrScreen(
         )
     }
 
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                val isGranted = ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+                if (isGranted != hasCameraPermission) {
+                    hasCameraPermission = isGranted
+                }
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { granted ->
@@ -108,6 +131,21 @@ fun PairingQrScreen(
 
     var qrParseError by remember { mutableStateOf<String?>(null) }
     val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
+    var activeAnalyzer by remember { mutableStateOf<BarcodeAnalyzer?>(null) }
+    var activeCameraProvider by remember { mutableStateOf<ProcessCameraProvider?>(null) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            try {
+                activeAnalyzer?.close()
+                activeCameraProvider?.unbindAll()
+                cameraExecutor.shutdown()
+                Log.d(PAIRING_CAMERA_TAG, "Pairing camera resources cleanly disposed.")
+            } catch (e: Exception) {
+                Log.w(PAIRING_CAMERA_TAG, "Error disposing pairing camera: ${e.message}", e)
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -143,45 +181,62 @@ fun PairingQrScreen(
                     modifier = Modifier.fillMaxSize(),
                     factory = { ctx ->
                         val previewView = PreviewView(ctx)
-                        val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
 
-                        cameraProviderFuture.addListener({
-                            val cameraProvider = cameraProviderFuture.get()
-                            val preview = Preview.Builder().build().also {
-                                it.surfaceProvider = previewView.surfaceProvider
-                            }
+                        try {
+                            val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
 
-                            val imageAnalysis = ImageAnalysis.Builder()
-                                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                                .build()
+                            cameraProviderFuture.addListener({
+                                try {
+                                    val cameraProvider = cameraProviderFuture.get()
+                                    activeCameraProvider = cameraProvider
 
-                            imageAnalysis.setAnalyzer(
-                                cameraExecutor,
-                                BarcodeAnalyzer(isQrModeOnly = true) { rawBarcode, _ ->
-                                    if (!uiState.isPairingInProgress) {
-                                        val parseResult = QrPayload.parseJson(rawBarcode)
-                                        if (parseResult.isSuccess) {
-                                            qrParseError = null
-                                            viewModel.pairWithQrPayload(parseResult.getOrThrow())
-                                        } else {
-                                            qrParseError = "QR code does not match TechDesk DZ format"
+                                    val cameraSelector = when {
+                                        cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA) -> CameraSelector.DEFAULT_BACK_CAMERA
+                                        cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA) -> CameraSelector.DEFAULT_FRONT_CAMERA
+                                        else -> {
+                                            qrParseError = "No camera found on this device or emulator"
+                                            return@addListener
                                         }
                                     }
-                                }
-                            )
 
-                            try {
-                                cameraProvider.unbindAll()
-                                cameraProvider.bindToLifecycle(
-                                    lifecycleOwner,
-                                    CameraSelector.DEFAULT_BACK_CAMERA,
-                                    preview,
-                                    imageAnalysis
-                                )
-                            } catch (e: Exception) {
-                                qrParseError = "Error initializing camera: ${e.message}"
-                            }
-                        }, ContextCompat.getMainExecutor(ctx))
+                                    val preview = Preview.Builder().build().also {
+                                        it.surfaceProvider = previewView.surfaceProvider
+                                    }
+
+                                    val imageAnalysis = ImageAnalysis.Builder()
+                                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                                        .build()
+
+                                    val analyzer = BarcodeAnalyzer(isQrModeOnly = true) { rawBarcode, _ ->
+                                        if (!uiState.isPairingInProgress) {
+                                            val parseResult = QrPayload.parseJson(rawBarcode)
+                                            if (parseResult.isSuccess) {
+                                                qrParseError = null
+                                                viewModel.pairWithQrPayload(parseResult.getOrThrow())
+                                            } else {
+                                                qrParseError = "QR code does not match TechDesk DZ format"
+                                            }
+                                        }
+                                    }
+                                    activeAnalyzer = analyzer
+                                    imageAnalysis.setAnalyzer(cameraExecutor, analyzer)
+
+                                    cameraProvider.unbindAll()
+                                    cameraProvider.bindToLifecycle(
+                                        lifecycleOwner,
+                                        cameraSelector,
+                                        preview,
+                                        imageAnalysis
+                                    )
+                                } catch (e: Exception) {
+                                    Log.e(PAIRING_CAMERA_TAG, "Error initializing pairing camera: ${e.message}", e)
+                                    qrParseError = "Error initializing camera: ${e.message}"
+                                }
+                            }, ContextCompat.getMainExecutor(ctx))
+                        } catch (e: Exception) {
+                            Log.e(PAIRING_CAMERA_TAG, "Failed to get ProcessCameraProvider: ${e.message}", e)
+                            qrParseError = "Failed to access camera: ${e.message}"
+                        }
 
                         previewView
                     }

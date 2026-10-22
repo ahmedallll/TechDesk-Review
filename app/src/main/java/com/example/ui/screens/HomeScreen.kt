@@ -189,13 +189,16 @@ fun HomeScreen(
                     subtitle = stringResource(R.string.card_scanner_sub),
                     icon = Icons.Default.QrCodeScanner,
                     testTag = "tile_product_scanner",
-                    onClick = { viewModel.navigateTo(AppScreen.LIVE_SCANNER) }
+                    onClick = {
+                        if (uiState.credentials != null) {
+                            // Scanner is already paired
+                            viewModel.navigateTo(AppScreen.LIVE_SCANNER)
+                        } else {
+                            // Scanner is not paired, go to the pairing screen
+                            viewModel.navigateTo(AppScreen.MANUAL_PAIR)
+                        }
+                    }
                 )
-            }
-
-            // Section C: Local Scanner Connection Status Card
-            item {
-                LocalScannerStatusCard(uiState = uiState)
             }
 
             // Quick Access Secondary Cards (History & Diagnostics)

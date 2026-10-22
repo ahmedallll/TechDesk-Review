@@ -176,7 +176,11 @@
     <string name="pref_about_desc">Architecture double : Scanner local + Tableau de bord sécurisé distant.</string>
     <string name="pref_language">Langue</string>
 
-    <!-- Permissions -->
+    <!-- Permissions & Camera Recovery -->
     <string name="camera_permission_required">L\'autorisation de la caméra est requise pour scanner les codes-barres.</string>
     <string name="camera_permission_grant">Autoriser la Caméra</string>
+    <string name="camera_permission_permanently_denied">L\'accès à la caméra est désactivé. Veuillez l\'activer dans les paramètres de l\'application pour utiliser le scanner.</string>
+    <string name="camera_permission_settings">Ouvrir les Paramètres</string>
+    <string name="camera_init_error">Erreur d\'Initialisation de la Caméra</string>
+    <string name="action_retry_camera">Réessayer la Caméra</string>
 </resources>

@@ -176,7 +176,11 @@
     <string name="pref_about_desc">هيكلية مزدوجة: ماسح محلي + لوحة تحكم آمنة عن بعد.</string>
     <string name="pref_language">اللغة</string>
 
-    <!-- Permissions -->
+    <!-- Permissions & Camera Recovery -->
     <string name="camera_permission_required">يتطلب الإذن باستخدام الكاميرا لمسح الرموز الشريطية.</string>
     <string name="camera_permission_grant">السماح بالكاميرا</string>
+    <string name="camera_permission_permanently_denied">تم رفض إذن الكاميرا نهائياً. يرجى تفعيله من إعدادات التطبيق لاستخدام الماسح.</string>
+    <string name="camera_permission_settings">فتح الإعدادات</string>
+    <string name="camera_init_error">خطأ في تشغيل الكاميرا</string>
+    <string name="action_retry_camera">إعادة المحاولة</string>
 </resources>

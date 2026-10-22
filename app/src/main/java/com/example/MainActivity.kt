@@ -75,9 +75,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             val baseContext = LocalContext.current
-            val localizedContext = remember(uiState.appLanguage, baseContext) {
-                baseContext.createConfigurationContext(localizedConfiguration)
-            }
 
             LaunchedEffect(uiState.appLanguage) {
                 try {
@@ -93,8 +90,7 @@ class MainActivity : AppCompatActivity() {
 
             CompositionLocalProvider(
                 LocalConfiguration provides localizedConfiguration,
-                LocalLayoutDirection provides layoutDirection,
-                LocalContext provides localizedContext
+                LocalLayoutDirection provides layoutDirection
             ) {
                 TechDeskScannerTheme(isDarkTheme = uiState.isDarkMode) {
                     Surface(modifier = Modifier.fillMaxSize()) {

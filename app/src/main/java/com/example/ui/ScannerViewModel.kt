@@ -446,7 +446,7 @@ class ScannerViewModel(application: Application) : AndroidViewModel(application)
                     credentials = credentials,
                     connectionStatus = ConnectionStatus.CONNECTED,
                     statusMessage = "Successfully paired with TechDesk DZ",
-                    currentScreen = AppScreen.HOME
+                    currentScreen = AppScreen.LIVE_SCANNER
                 )
             }
             feedbackManager.playScanSuccess(soundEnabled = true, vibrationEnabled = true)
@@ -724,73 +724,16 @@ class ScannerViewModel(application: Application) : AndroidViewModel(application)
 
             _uiState.update { it.copy(isRemoteLoading = true, remoteErrorMessage = null) }
 
-            // Extract host and port from Server URL
-            val (host, port) = parseHostAndPortFromUrl(cleanUrl)
-            Log.d(TAG, "Parsed Server URL '$cleanUrl' -> Host: $host, Port: $port")
-
-            // Step A (Local Scanner Pairing)
-            val deviceName = "Android Scanner (${Build.MODEL})"
-            val deviceModel = "${Build.MANUFACTURER} ${Build.MODEL}"
-            val pairRequest = PairRequest(
-                installationReference = cleanRef,
-                pairingCode = cleanCode,
-                deviceName = deviceName,
-                deviceModel = deviceModel
-            )
-
-            var localCredentials: DeviceCredentials? = null
-            val localPairResult = apiClient.pair(host, port, pairRequest)
-            if (localPairResult.isSuccess) {
-                val response = localPairResult.getOrThrow()
-                localCredentials = DeviceCredentials(
-                    installationReference = response.installationReference ?: cleanRef,
-                    host = host,
-                    port = port,
-                    deviceId = response.deviceId ?: UUID.randomUUID().toString(),
-                    deviceToken = response.deviceToken ?: "",
-                    protocolVersion = response.protocolVersion ?: "1.0.0",
-                    deviceName = deviceName
-                )
-                try {
-                    secureStorage.saveCredentials(localCredentials)
-                    Log.d(TAG, "Successfully saved local scanner credentials to SecureStorage")
-                } catch (e: Exception) {
-                    Log.w(TAG, "KeyStore local credentials warning", e)
-                }
-            } else {
-                Log.w(TAG, "Local scanner pairing step note: ${localPairResult.exceptionOrNull()?.message}")
-            }
-
-            // Step B (Remote Store Pairing)
             when (val result = remoteRepository.pairRemoteStore(cleanUrl, cleanRef, cleanCode)) {
                 is RemoteResult.Success -> {
-                    val finalLocalCreds = localCredentials ?: DeviceCredentials(
-                        installationReference = cleanRef,
-                        host = host,
-                        port = port,
-                        deviceId = UUID.randomUUID().toString(),
-                        deviceToken = result.data.remoteToken,
-                        protocolVersion = "1.0.0",
-                        deviceName = deviceName
-                    )
-                    try {
-                        secureStorage.saveCredentials(finalLocalCreds)
-                    } catch (e: Exception) {
-                        Log.w(TAG, "Error saving fallback local credentials", e)
-                    }
-
                     _uiState.update {
                         it.copy(
                             isRemoteLoading = false,
-                            credentials = finalLocalCreds,
                             remoteCredentials = result.data,
-                            connectionStatus = ConnectionStatus.CONNECTED,
-                            statusMessage = "Connected to TechDesk DZ ($cleanRef)",
                             currentScreen = AppScreen.HOME,
                             remoteErrorMessage = null
                         )
                     }
-                    startHeartbeat(finalLocalCreds)
                     loadRemoteDashboard("today", forceRefresh = true)
                 }
                 is RemoteResult.Error -> {
