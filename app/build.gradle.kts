@@ -100,6 +100,7 @@ dependencies {
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.logging.interceptor)
   implementation(libs.moshi.kotlin)
+  ksp(libs.moshi.kotlin.codegen)
   implementation(libs.okhttp)
   implementation(libs.retrofit)
 
