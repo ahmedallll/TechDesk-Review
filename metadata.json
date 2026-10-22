@@ -1,0 +1,6 @@
+{
+  "name": "TechDesk Scanner",
+  "description": "Native Android barcode scanner for TechDesk DZ over USB tethering with live CameraX preview, Keystore security, and multi-language support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

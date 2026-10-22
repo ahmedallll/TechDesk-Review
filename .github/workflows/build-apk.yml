@@ -1,0 +1,62 @@
+name: Build and Test TechDesk Scanner
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build, Unit Tests & Emulator Instrumented Tests
+    runs-on: macos-latest # macOS provides hardware acceleration for Android emulators
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Assemble Debug APK & Test APK
+        run: ./gradlew assembleDebug assembleDebugAndroidTest --stacktrace
+
+      - name: Run Instrumented Tests on Emulator
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          script: ./gradlew connectedDebugAndroidTest --stacktrace
+
+      - name: Upload Debug APK Artifact
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: TechDesk-Scanner-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload Build and Test Reports on Failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: gradle-build-and-test-reports
+          path: |
+            app/build/reports/
+            **/build/reports/
+            app/build/outputs/androidTest-results/
+          retention-days: 7

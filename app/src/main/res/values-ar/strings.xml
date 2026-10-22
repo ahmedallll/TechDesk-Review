@@ -1,0 +1,182 @@
+<resources>
+    <string name="app_name">TechDesk Scanner</string>
+
+    <!-- General Navigation & Actions -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_scanner">الماسح المباشر</string>
+    <string name="nav_history">سجل المسح</string>
+    <string name="nav_discovery">تشخيص الشبكة</string>
+    <string name="nav_settings">الإعدادات</string>
+    <string name="nav_remote_dashboard">لوحة تحكم المحل</string>
+    <string name="nav_remote_reports">التقارير المالية</string>
+    <string name="nav_remote_pair">الربط عن بعد</string>
+    <string name="action_start_scanning">بدء المسح</string>
+    <string name="action_scan_pairing_qr">مسح QR الربط</string>
+    <string name="action_manual_pair">الربط اليدوي</string>
+    <string name="action_forget_pc">إلغاء حفظ الكمبيوتر</string>
+    <string name="action_forget_pc_confirm">هل أنت تأكد من إزالة بيانات الاتصال المحفوظة لهذا الكمبيوتر؟</string>
+    <string name="action_forget_confirm_button">حذف الكمبيوتر</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_clear_history">مسح السجل</string>
+    <string name="action_reconnect">إعادة الاتصال</string>
+    <string name="action_test_connection">اختبار الاتصال</string>
+    <string name="action_auto_discover">اكتشاف تلقائي للكمبيوتر</string>
+    <string name="action_refresh">تحديث</string>
+
+    <!-- Home Redesign Strings -->
+    <string name="home_welcome_title">TECHNICAL STORE</string>
+    <string name="home_welcome_subtitle">مرحباً بك في TechDesk DZ</string>
+    <string name="card_dashboard_title">لوحة تحكم المحل</string>
+    <string name="card_dashboard_sub">المبيعات والنشاط</string>
+    <string name="card_reports_title">التقارير المالية</string>
+    <string name="card_reports_sub">الأرباح والمصاريف</string>
+    <string name="card_scanner_title">ماسح المنتجات</string>
+    <string name="card_scanner_sub">المسح المباشر للحاسوب</string>
+    <string name="scanner_status_connected">الماسح متصل</string>
+    <string name="scanner_status_unpaired">الماسح غير مربوط</string>
+    <string name="action_connect_scanner">ربط الماسح</string>
+    <string name="status_ready_to_scan">جاهز للمسح</string>
+    <string name="status_local_required">يتطلب الاتصال المحالي بالكمبيوتر</string>
+    <string name="dashboard_live_title">لوحة المباشر للمحل</string>
+
+    <!-- Home 3 Primary Cards -->
+    <string name="home_section_features">عمليات المحل</string>
+    <string name="tile_scanner_title">ماسح المنتجات</string>
+    <string name="tile_scanner_sub">إرسال الباركود مباشرة إلى برنامج TechDesk DZ</string>
+    <string name="tile_dashboard_title">لوحة تحكم المحل</string>
+    <string name="tile_dashboard_sub">المبيعات اليومية، الصندوق، تنبيهات المخزون والصيانة</string>
+    <string name="tile_reports_title">التقارير المالية والنتيجة</string>
+    <string name="tile_reports_sub">رقم الأعمال، هامش الربح، المصاريف والنتيجة الصافية (دج)</string>
+
+    <!-- Remote Status & Pairing -->
+    <string name="remote_status_title">الربط عن بعد (سحابي)</string>
+    <string name="remote_paired_as">المحل: %1$s</string>
+    <string name="remote_not_paired">الربط عن بعد غير مُمكّن</string>
+    <string name="remote_action_pair">تفعيل الاتصال عن بعد</string>
+    <string name="remote_action_disconnect">فصل ربط المحل</string>
+    <string name="remote_offline_banner">بيانات مخزنة بدون إنترنت (آخر تحديث: %1$s)</string>
+    <string name="remote_pair_title">ربط المحل التجاري عن بعد</string>
+    <string name="remote_pair_desc">متابعة المبيعات المباشرة، الصندوق، والتقارير المالية لمقرك التجاري بأمان ومن أي مكان عبر الإنترنت.</string>
+    <string name="field_remote_url">رابط السيرفر / النطاق</string>
+    <string name="field_remote_url_hint">http://192.168.1.100:3000</string>
+    <string name="help_dialog_title">أين تجد هذه المعلومات؟</string>
+    <string name="help_dialog_content">1. افتح برنامج TechDesk DZ على جهاز الكمبيوتر.\n2. اذهب إلى الإعدادات &gt; الاتصال عبر الجوال.\n3. تحت \'معرف الكمبيوتر\', انسخ عنوان IP المحلي (مثال: 192.168.1.50) ومنفذ الخدمة (مثال: 3000).\n4. أدخلها هنا بالشكل: http://IP_ADDRESS:PORT (مثال: http://192.168.1.50:3000).</string>
+    <string name="help_dialog_confirm">فهمت</string>
+    <string name="remote_login_title">TechDesk DZ</string>
+    <string name="remote_login_subtitle">تسجيل الدخول إلى متجرك</string>
+    <string name="remote_login_connect">الاتصال بالمحل</string>
+    <string name="remote_login_disconnect">فصل ربط المحل</string>
+    <string name="remote_login_error_failed">فشل الاتصال. تحقق من عنوان IP والرمز.</string>
+
+    <!-- Connection & Status -->
+    <string name="status_connected">متصل</string>
+    <string name="status_connecting">جاري الاتصال…</string>
+    <string name="status_disconnected">غير متصل</string>
+    <string name="status_unpaired">غير مربوط</string>
+    <string name="status_reconnecting">إعادة الاتصال…</string>
+    <string name="status_error">خطأ في الاتصال</string>
+
+    <!-- Local Network Status -->
+    <string name="tethering_detected">الشبكة المحلية مفعلة</string>
+    <string name="tethering_not_detected">الشبكة المحلية غير مكتشفة</string>
+    <string name="tethering_hint">قم بتوصيل الهاتف والكمبيوتر بنفس شبكة الـ Wi-Fi المحلية.</string>
+
+    <!-- Server Context Badges -->
+    <string name="context_pos">وضع الصندوق (POS)</string>
+    <string name="context_products">وضع المنتجات (التسجيل)</string>
+    <string name="context_auto">الوضع التلقائي</string>
+    <string name="context_unknown">في الانتظار</string>
+
+    <!-- Pairing Screen -->
+    <string name="pairing_title">الربط مع TechDesk DZ</string>
+    <string name="pairing_scan_qr_desc">افتح الإعدادات ← ماسح أندرويد في برنامج TechDesk واقم بمسح رمز QR.</string>
+    <string name="pairing_manual_title">الإعداد اليدوي البديل</string>
+    <string name="pairing_submitting">جاري ربط الجهاز مع TechDesk DZ…</string>
+    <string name="field_ref">مرجع التثبيت (ref)</string>
+    <string name="field_ref_hint">مثال: TDZ-A7K29M</string>
+    <string name="field_code">رمز الربط (code)</string>
+    <string name="field_code_hint">مثال: 849201</string>
+    <string name="field_ip">عنوان IP للكمبيوتر (ip)</string>
+    <string name="field_ip_hint">IPv4 المحالي للكمبيوتر، مثال: 192.168.1.10</string>
+    <string name="field_port">المنفذ (port)</string>
+    <string name="field_port_hint">الافتراضي: 3000</string>
+
+    <!-- Scanner Screen -->
+    <string name="scanner_last_scanned">آخر باركود :</string>
+    <string name="scanner_status_sent">تم الإرسال للكمبيوتر</string>
+    <string name="scanner_status_sending">جاري الإرسال…</string>
+    <string name="scanner_status_failed">فشل الإرسال</string>
+    <string name="scanner_reticle_hint">ضع الباركود داخل الإطار</string>
+    <string name="scanner_continuous_hint">جاهز للباركود التالي</string>
+
+    <!-- Scan History -->
+    <string name="history_title">سجل الجلسة الحالية</string>
+    <string name="history_total_scans">إجمالي الممسوحات: %1$d</string>
+    <string name="history_empty">لم يتم مسح أي باركود في هذه الجلسة بعد.</string>
+
+    <!-- Diagnostics Screen -->
+    <string name="diag_title">الشبكة والتشخيص</string>
+    <string name="diag_local_interfaces">واجهات الشبكة المحلية المكتشفة:</string>
+
+    <!-- Dashboard Metrics & Periods -->
+    <string name="metric_sales">مبيعات اليوم</string>
+    <string name="metric_cash">رصيد الصندوق</string>
+    <string name="metric_expenses">المصاريف</string>
+    <string name="metric_low_stock">نقص المخزون</string>
+    <string name="metric_repairs">الصيانة</string>
+    <string name="metric_deliveries">التوصيل</string>
+    <string name="recent_activity">سجل النشاط الحديث</string>
+
+    <string name="period_today">اليوم</string>
+    <string name="period_this_week">هذا الأسبوع</string>
+    <string name="period_this_month">هذا الشهر</string>
+    <string name="period_last_3_months">آخر 3 أشهر</string>
+    <string name="period_this_year">هذه السنة</string>
+    <string name="period_custom">فترة مخصصة</string>
+
+    <!-- Financial Report KPIs -->
+    <string name="kpi_revenue">إجمالي رقم الأعمال</string>
+    <string name="kpi_cogs">تكلفة المبيعات (COGS)</string>
+    <string name="kpi_gross_profit">هامش الربح الإجمالي</string>
+    <string name="kpi_operating_expenses">مصاريف الاستغلال</string>
+    <string name="kpi_net_profit">النتيجة الصافية</string>
+    <string name="kpi_receivables">ديون الزبائن</string>
+    <string name="kpi_payables">ديون الموردين</string>
+    <string name="trend_chart_title">تطور رقم الأعمال والربح الصافي (دج)</string>
+
+    <!-- Settings Screen (Exact Keys) -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_appearance">المظهر</string>
+    <string name="settings_dark_mode">الوضع الداكن</string>
+    <string name="settings_dark_mode_desc">تفعيل المظهر الداكن للواجهة</string>
+    <string name="settings_feedback">إعدادات الماسح</string>
+    <string name="settings_sound">التنبيه الصوتي</string>
+    <string name="settings_sound_desc">إصدار صوت عند نجاح قراءة الباركود</string>
+    <string name="settings_haptic">الاهتزاز</string>
+    <string name="settings_haptic_desc">اهتزاز الهاتف عند نجاح قراءة الباركود</string>
+    <string name="settings_auto_reconnect">إعادة الاتصال التلقائي</string>
+    <string name="settings_auto_reconnect_desc">محاولة إعادة الاتصال عند انقطاع الشبكة المحلية</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_security">الأمان والتخزين</string>
+    <string name="settings_security_desc">البيانات محمية بواسطة Android KeyStore مشفرة (AES-GCM)</string>
+    <string name="settings_about">حول بروتوكول TechDesk DZ</string>
+    <string name="settings_about_desc">هيكلية مزدوجة: ماسح محلي + لوحة تحكم آمنة عن بعد.</string>
+
+    <!-- Legacy / Alias Keys -->
+    <string name="pref_audio_feedback">التنبيه الصوتي</string>
+    <string name="pref_audio_desc">إصدار صوت عند نجاح قراءة الباركود</string>
+    <string name="pref_vibrate_feedback">الاهتزاز</string>
+    <string name="pref_vibrate_desc">اهتزاز الهاتف عند نجاح قراءة الباركود</string>
+    <string name="pref_auto_reconnect">إعادة الاتصال التلقائي</string>
+    <string name="pref_auto_reconnect_desc">محاولة إعادة الاتصال عند انقطاع الشبكة المحلية</string>
+    <string name="pref_security_info">الأمان والتخزين</string>
+    <string name="pref_security_desc">البيانات محمية بواسطة Android KeyStore مشفرة (AES-GCM)</string>
+    <string name="pref_about">حول بروتوكول TechDesk DZ</string>
+    <string name="pref_about_desc">هيكلية مزدوجة: ماسح محلي + لوحة تحكم آمنة عن بعد.</string>
+    <string name="pref_language">اللغة</string>
+
+    <!-- Permissions -->
+    <string name="camera_permission_required">يتطلب الإذن باستخدام الكاميرا لمسح الرموز الشريطية.</string>
+    <string name="camera_permission_grant">السماح بالكاميرا</string>
+</resources>

@@ -1,0 +1,182 @@
+<resources>
+    <string name="app_name">TechDesk Scanner</string>
+
+    <!-- General Navigation & Actions -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_scanner">Scanner</string>
+    <string name="nav_history">Historique</string>
+    <string name="nav_discovery">Diagnostics</string>
+    <string name="nav_settings">Paramètres</string>
+    <string name="nav_remote_dashboard">Tableau de Bord</string>
+    <string name="nav_remote_reports">Rapports Financiers</string>
+    <string name="nav_remote_pair">Connexion à Distance</string>
+    <string name="action_start_scanning">Commencer à scanner</string>
+    <string name="action_scan_pairing_qr">Scanner QR d\'Appairage</string>
+    <string name="action_manual_pair">Appairage Manuel</string>
+    <string name="action_forget_pc">Oublier ce PC</string>
+    <string name="action_forget_pc_confirm">Voulez-vous supprimer les identifiants enregistrés pour ce PC ?</string>
+    <string name="action_forget_confirm_button">Oublier le PC</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="action_clear_history">Effacer l\'historique</string>
+    <string name="action_reconnect">Reconnecter</string>
+    <string name="action_test_connection">Tester la connexion</string>
+    <string name="action_auto_discover">Découverte Auto PC</string>
+    <string name="action_refresh">Actualiser</string>
+
+    <!-- Home Redesign Strings -->
+    <string name="home_welcome_title">TECHNICAL STORE</string>
+    <string name="home_welcome_subtitle">Bienvenue sur TechDesk DZ</string>
+    <string name="card_dashboard_title">Tableau de bord</string>
+    <string name="card_dashboard_sub">Ventes et activité</string>
+    <string name="card_reports_title">Rapports Financiers</string>
+    <string name="card_reports_sub">Bénéfices et dépenses</string>
+    <string name="card_scanner_title">Scanner de produits</string>
+    <string name="card_scanner_sub">Scanner vers le PC</string>
+    <string name="scanner_status_connected">Scanner connecté</string>
+    <string name="scanner_status_unpaired">Scanner non appairé</string>
+    <string name="action_connect_scanner">Connecter le scanner</string>
+    <string name="status_ready_to_scan">Prêt pour le scan</string>
+    <string name="status_local_required">Connexion locale PC requise</string>
+    <string name="dashboard_live_title">Tableau de Bord - En Direct</string>
+
+    <!-- Home 3 Primary Cards -->
+    <string name="home_section_features">Opérations Magasin</string>
+    <string name="tile_scanner_title">Scanner de produits</string>
+    <string name="tile_scanner_sub">Envoyer les codes-barres directement vers TechDesk DZ Desktop</string>
+    <string name="tile_dashboard_title">Tableau de bord Magasin</string>
+    <string name="tile_dashboard_sub">Ventes quotidiennes, caisse, alertes de stock et réparations</string>
+    <string name="tile_reports_title">Rapports Financiers &amp; Bilan</string>
+    <string name="tile_reports_sub">Chiffre d\'affaires, marge brute, dépenses et résultat net (DA)</string>
+
+    <!-- Remote Status & Pairing -->
+    <string name="remote_status_title">Accès à Distance Magasin</string>
+    <string name="remote_paired_as">Magasin: %1$s</string>
+    <string name="remote_not_paired">Accès à distance non configuré</string>
+    <string name="remote_action_pair">Connecter l\'accès à distance</string>
+    <string name="remote_action_disconnect">Déconnecter le magasin</string>
+    <string name="remote_offline_banner">Données hors-ligne (Dernière synchro: %1$s)</string>
+    <string name="remote_pair_title">Connecter Votre Magasin à Distance</string>
+    <string name="remote_pair_desc">Consultez en temps réel les ventes, le solde de la caisse et les rapports financiers en toute sécurité depuis votre téléphone.</string>
+    <string name="field_remote_url">URL du Serveur / Domaine</string>
+    <string name="field_remote_url_hint">http://192.168.1.100:3000</string>
+    <string name="help_dialog_title">Où trouver ces informations ?</string>
+    <string name="help_dialog_content">1. Ouvrez TechDesk DZ sur votre PC.\n2. Allez dans Paramètres &gt; Connexion Mobile.\n3. Sous \'Identifiant du PC\', copiez l\'Adresse IP locale (ex: 192.168.1.50) et le Port du service (ex: 3000).\n4. Entrez-les ici au format : http://ADRESSE_IP:PORT (ex: http://192.168.1.50:3000).</string>
+    <string name="help_dialog_confirm">Compris</string>
+    <string name="remote_login_title">TechDesk DZ</string>
+    <string name="remote_login_subtitle">Connectez-vous à votre boutique</string>
+    <string name="remote_login_connect">Connecter la boutique</string>
+    <string name="remote_login_disconnect">Déconnecter la boutique</string>
+    <string name="remote_login_error_failed">Échec de connexion. Vérifiez l\'IP et le code.</string>
+
+    <!-- Connection & Status -->
+    <string name="status_connected">Connecté</string>
+    <string name="status_connecting">Connexion en cours…</string>
+    <string name="status_disconnected">Déconnecté</string>
+    <string name="status_unpaired">Non appairé</string>
+    <string name="status_reconnecting">Reconnexion…</string>
+    <string name="status_error">Erreur de connexion</string>
+
+    <!-- Local Network Status -->
+    <string name="tethering_detected">Réseau local actif</string>
+    <string name="tethering_not_detected">Réseau local non détecté</string>
+    <string name="tethering_hint">Connectez le PC Windows et le téléphone Android au même réseau Wi-Fi local.</string>
+
+    <!-- Server Context Badges -->
+    <string name="context_pos">Mode Caisse (POS)</string>
+    <string name="context_products">Mode Produits (Enregistrement)</string>
+    <string name="context_auto">Mode Auto</string>
+    <string name="context_unknown">En attente</string>
+
+    <!-- Pairing Screen -->
+    <string name="pairing_title">Appairer avec TechDesk DZ</string>
+    <string name="pairing_scan_qr_desc">Ouvrez Paramètres → Scanner Android dans TechDesk DZ et scannez le code QR.</string>
+    <string name="pairing_manual_title">Configuration Manuelle</string>
+    <string name="pairing_submitting">Appairage de l\'appareil avec TechDesk DZ…</string>
+    <string name="field_ref">Référence d\'installation (ref)</string>
+    <string name="field_ref_hint">ex: TDZ-A7K29M</string>
+    <string name="field_code">Code d\'appairage (code)</string>
+    <string name="field_code_hint">ex: 849201</string>
+    <string name="field_ip">Adresse IP du PC (ip)</string>
+    <string name="field_ip_hint">IPv4 Locale PC Windows, ex: 192.168.1.10</string>
+    <string name="field_port">Port (port)</string>
+    <string name="field_port_hint">Par défaut: 3000</string>
+
+    <!-- Scanner Screen -->
+    <string name="scanner_last_scanned">Dernier scan :</string>
+    <string name="scanner_status_sent">Transmis au PC</string>
+    <string name="scanner_status_sending">Envoi en cours…</string>
+    <string name="scanner_status_failed">Échec de l\'envoi</string>
+    <string name="scanner_reticle_hint">Alignez le code-barres dans le cadre</string>
+    <string name="scanner_continuous_hint">Prêt pour le code-barres suivant</string>
+
+    <!-- Scan History -->
+    <string name="history_title">Historique de la Session</string>
+    <string name="history_total_scans">Total des Scans : %1$d</string>
+    <string name="history_empty">Aucun code-barres scanné durant cette session.</string>
+
+    <!-- Diagnostics Screen -->
+    <string name="diag_title">Réseau &amp; Diagnostics</string>
+    <string name="diag_local_interfaces">Interfaces locales détectées :</string>
+
+    <!-- Dashboard Metrics & Periods -->
+    <string name="metric_sales">Ventes du jour</string>
+    <string name="metric_cash">Solde Caisse</string>
+    <string name="metric_expenses">Dépenses</string>
+    <string name="metric_low_stock">Stock Faible</string>
+    <string name="metric_repairs">Réparations</string>
+    <string name="metric_deliveries">Livraisons</string>
+    <string name="recent_activity">Activité Récente</string>
+
+    <string name="period_today">Aujourd\'hui</string>
+    <string name="period_this_week">Cette semaine</string>
+    <string name="period_this_month">Ce mois-ci</string>
+    <string name="period_last_3_months">3 derniers mois</string>
+    <string name="period_this_year">Cette année</string>
+    <string name="period_custom">Période personnalisée</string>
+
+    <!-- Financial Report KPIs -->
+    <string name="kpi_revenue">Chiffre d\'Affaires Total</string>
+    <string name="kpi_cogs">Coût des Ventes (COGS)</string>
+    <string name="kpi_gross_profit">Marge Brute</string>
+    <string name="kpi_operating_expenses">Charges d\'Exploitation</string>
+    <string name="kpi_net_profit">Résultat Net</string>
+    <string name="kpi_receivables">Créances Clients</string>
+    <string name="kpi_payables">Dettes Fournisseurs</string>
+    <string name="trend_chart_title">Tendance CA et Résultat Net (DA)</string>
+
+    <!-- Settings Screen (Exact Keys) -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_dark_mode">Mode Sombre</string>
+    <string name="settings_dark_mode_desc">Activer le thème sombre pour l\'interface</string>
+    <string name="settings_feedback">Retour du Scanner</string>
+    <string name="settings_sound">Retour Sonore</string>
+    <string name="settings_sound_desc">Bip sonore lors d\'un scan réussi</string>
+    <string name="settings_haptic">Retour Haptique</string>
+    <string name="settings_haptic_desc">Vibration lors d\'un scan réussi</string>
+    <string name="settings_auto_reconnect">Reconnexion Auto</string>
+    <string name="settings_auto_reconnect_desc">Tente de se reconnecter si le réseau local se déconnecte</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_security">Sécurité &amp; Stockage</string>
+    <string name="settings_security_desc">Identifiants sécurisés via Android KeyStore matériel (AES-GCM)</string>
+    <string name="settings_about">À propos du Protocole TechDesk DZ</string>
+    <string name="settings_about_desc">Architecture double : Scanner local + Tableau de bord sécurisé distant.</string>
+
+    <!-- Legacy / Alias Keys -->
+    <string name="pref_audio_feedback">Retour Sonore</string>
+    <string name="pref_audio_desc">Bip sonore lors d\'un scan réussi</string>
+    <string name="pref_vibrate_feedback">Retour Haptique</string>
+    <string name="pref_vibrate_desc">Vibration lors d\'un scan réussi</string>
+    <string name="pref_auto_reconnect">Reconnexion Auto</string>
+    <string name="pref_auto_reconnect_desc">Tente de se reconnecter si le réseau local se déconnecte</string>
+    <string name="pref_security_info">Sécurité &amp; Stockage</string>
+    <string name="pref_security_desc">Identifiants sécurisés via Android KeyStore matériel (AES-GCM)</string>
+    <string name="pref_about">À propos du Protocole TechDesk DZ</string>
+    <string name="pref_about_desc">Architecture double : Scanner local + Tableau de bord sécurisé distant.</string>
+    <string name="pref_language">Langue</string>
+
+    <!-- Permissions -->
+    <string name="camera_permission_required">L\'autorisation de la caméra est requise pour scanner les codes-barres.</string>
+    <string name="camera_permission_grant">Autoriser la Caméra</string>
+</resources>
